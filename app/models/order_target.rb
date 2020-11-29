@@ -1,0 +1,2 @@
+class OrderTarget < ApplicationRecord
+end

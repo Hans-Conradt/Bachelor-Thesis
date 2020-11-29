@@ -1,0 +1,2 @@
+class VgrState < ApplicationRecord
+end

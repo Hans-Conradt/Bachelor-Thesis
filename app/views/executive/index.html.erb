@@ -1,0 +1,63 @@
+<div class="container">
+  <h1>Business Dashboard, <%="Hallo #{current_user.first_name}" %></h1>
+  <div class="grid-container">
+    <div class="child Area-1">
+      <h2>Actual vs. Target Revenue </h2>
+      <div class="btn-group btn-group-toggle m" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+          <input type="radio" name="options" id="option1" checked> Year
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="option2"> Month
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="option3"> Day
+          <%event = 1%>
+        </label>
+      </div>
+      <div class="m">
+      </div>
+    </div>
+    <div class="child Area-2">
+      <h2>Demand forecast vs. actual orders</h2>
+      <div class="m">
+        <%= line_chart  [
+        {name: "Target", data: OrderTarget.group(:time).count},
+        {name: "Orders", data: Order.group(:time).count}
+        ], ytitle: "Quantity"%>
+      </div>
+    </div>
+    <div class="child Area-3">
+      <h2>Customer acquisition cost vs customer lifetime value</h2>
+      <div class="m">
+      </div>
+    </div>
+    <div class="child Area-4">
+      <h2>Productivity of the production line</h2>
+      <div class="m">
+      </div>
+    </div>
+    <div class="child Area-5">
+      <h2>Long-term financial performance Indicators </h2>
+      <div class="m">
+      </div>
+    </div>
+    <!-- <div class="child Area-6">
+      <h2>Long-term financial performance Indicators </h2>
+      <div class="m">
+      </div>
+    </div> -->
+     <div class="child Area-5">
+      <h2>Long-term financial performance Indicators </h2>
+      <div class="m">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

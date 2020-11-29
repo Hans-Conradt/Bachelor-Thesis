@@ -1,0 +1,2 @@
+class DsiState < ApplicationRecord
+end

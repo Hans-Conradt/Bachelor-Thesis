@@ -1,0 +1,2 @@
+class HbwState < ApplicationRecord
+end

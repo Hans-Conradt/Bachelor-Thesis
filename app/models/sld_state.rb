@@ -1,0 +1,2 @@
+class SldState < ApplicationRecord
+end

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BachelorThesis</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <!-- <meta http-equiv="refresh" content="5"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= yield %>
+    <% javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <%= yield :after_js%>
+  </body>
+  <%= render 'shared/navbar' %>
+  <!-- <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p> -->
+</html>
+

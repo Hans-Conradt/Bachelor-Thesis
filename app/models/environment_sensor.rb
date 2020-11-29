@@ -1,0 +1,2 @@
+class EnvironmentSensor < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class CameraPosition < ApplicationRecord
+end

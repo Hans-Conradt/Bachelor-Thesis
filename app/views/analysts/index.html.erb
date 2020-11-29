@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Analysts Dashboard</h1>
+  <h2><%="Hallo #{current_user.first_name}" %></h2>
+   <div class="flex-container">
+    <div class="flex-item border">
+      <h1>MPO Activity in Minutes per day</h1>
+      <%= line_chart MpoState.group_by_day(:created_at).sum(:active) %>
+    </div>
+  </div>
+</div>
+
+
