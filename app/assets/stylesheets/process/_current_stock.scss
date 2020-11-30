@@ -1,0 +1,42 @@
+.WHITE {
+  background-color: #e3e3e3;
+  border: 2px solid rgb(105,105,105);
+  border: 2px solid rgba(105, 105, 105, 0.5);
+  -webkit-background-clip: padding-box; /* for Safari */
+  background-clip: padding-box;
+}
+
+.BLUE {
+  background-color: #175dad;
+  border: 2px solid rgb(40,40,40);
+  border: 2px solid rgba(40, 40, 40, 0.5);
+  -webkit-background-clip: padding-box; /* for Safari */
+  background-clip: padding-box;
+}
+
+.RED {
+  background-color: #ad2817;
+  border: 2px solid rgb(40,40,40);
+  border: 2px solid rgba(40, 40, 40, 0.5);
+  -webkit-background-clip: padding-box; /* for Safari */
+  background-clip: padding-box;
+}
+
+.NIL{
+  background-color: gray;
+  opacity: 50%;
+  border: 2px solid rgb(40,40,40);
+  border: 2px solid rgba(40, 40, 40, 0.5);
+  -webkit-background-clip: padding-box; /* for Safari */
+  background-clip: padding-box;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin: 4px
+}

@@ -53,10 +53,10 @@ class MqttConnectorWorker
       update_brightness(message)
     when 'i/cam'
       update_image(message)
-    # when 'i/ptu/pos'
-    #   update_ptu_pos(message)
-    # when 'i/alert'
-    #   update_alert(message)
+    when 'i/ptu/pos'
+      update_ptu_pos(message)
+    when 'i/alert'
+      update_alert(message)
     # when 'i/broadcast'
     #   update_broadcast(message)
     when 'f/i/state/hbw'
@@ -119,6 +119,18 @@ class MqttConnectorWorker
     new_hbw_state = HbwState.new(active: hbw_json['active'].to_i)
     new_hbw_state.save
     puts 'HBW State Updated'
+  end
+
+  def update_position
+    position_json = JSON.parse(message)
+    new_position = CameraPosition.new(pan: position_json['pan'],tilt: position_json['tilt'])
+    new_position.save
+    puts 'Camera Position Updated'
+    new
+  end
+  def update_alert
+    alert_json = JSON.parse(message)
+
   end
 
   def update_vgr_state(message)

@@ -15,113 +15,29 @@
  */
 @import "bootstrap/scss/bootstrap" ;
 /* picks it up in node_modules! */
-@import "pages/index" ;
+@import "home/index" ;
+@import "business/index" ;
+@import "production/index" ;
+@import "process/index" ;
 @import "components/index" ;
 
-
 body {
+  background-size: cover;
+  background-image: url(/assets/background.jpg);
   margin: 10px;
   font-family: 'Open Sans', sans-serif;
   height: 100%;
   overflow-y: hidden;
-
 }
+
 h1, h2, h3 {
   font-family: Raleway, Helvetica, sans-serif;
   text-align: center
 }
 
-.container {
-  margin-top: 80px
+h3 {
+  font-size: 25px
 }
-.parent {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-template-rows: repeat(3, 1fr);
-gap: 15px 15px;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 15px 15px;
-  grid-template-areas:
-    "Area-1 Area-2 Area-2"
-    "Area-3 Area-4 Area-5";
-}
-.Area-1 { grid-area: Area-1; }
-.Area-2 { grid-area: Area-2; }
-.Area-3 { grid-area: Area-3; }
-.Area-4 { grid-area: Area-4; }
-.Area-5 { grid-area: Area-5; }
-
-.margin {
-  margin: 5px;
-  text-align: center
-
-}
-.m{
-  margin: 6px
-}
-
-.child {
-  background-color: rgba(175, 175, 175,0.7);
-  border-radius: 5px;
-  border-color: black
-
-}
-
-.active {
-  border: 2px;
-  border-radius: 60px;
-  margin: 4px;
-  background-color: #3d7036;
-}
-
-
-.inactive {
-  border: 2px;
-  border-radius: 60px;
-  margin: 4px;
-  background-color: #ad2817;
-}
-
-.centered {
-  text-align: center;
-}
-
-.border {
-  // border: 2px;
-  // border-color: black;
-  // border-radius:60px
-}
-.flex-container {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.flex-item {
-
-}
-.wide {
-  margin-top: 10px;
-  width: 300px;
-  height: 100px;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 100px;
-}
-
-.middle {
-  height: 9em;
-  display: flex;
-  align-items: center;
-  justify-content: center
-}
-
 
 .login {
   width: 350px;
@@ -129,18 +45,23 @@ gap: 15px 15px;
   margin-bottom: 10px;
 }
 
-.margin_bottom {
-  margin-bottom: 10px;
+.container {
+  margin-top: 80px;
 }
-.dark_background {
-  background-color: rgba(100,100,100,0.5)
+
+.child {
+  background-color: rgba(175, 175, 175,0.7);
+  border-radius: 5px;
+  border-color: black;
+  text-align: center;
+
 }
-.environment  {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(4, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 14px;
+
+.row {
+  justify-content: center;
+  vertical-align: middle
 }
+
+
 
 

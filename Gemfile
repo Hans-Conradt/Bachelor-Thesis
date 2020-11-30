@@ -21,11 +21,14 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# gem to use highcharts
+gem 'daru-view', git: 'https://github.com/SciRuby/daru-view'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem "chartkick"
 gem 'groupdate'
+gem 'hightop'
 gem 'json', '~> 2.3', '>= 2.3.1'
 gem 'multi_json', '~> 1.15'
 # Reduces boot times through caching; required in config/boot.rb

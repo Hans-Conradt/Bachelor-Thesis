@@ -1,0 +1,2 @@
+class Workpiece < ApplicationRecord
+end

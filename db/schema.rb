@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_29_194717) do
+ActiveRecord::Schema.define(version: 2020_11_30_194209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2020_11_29_194717) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "t"
     t.string "time"
+    t.integer "quality"
   end
 
   create_table "sld_states", force: :cascade do |t|
@@ -122,7 +123,7 @@ ActiveRecord::Schema.define(version: 2020_11_29_194717) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "position"
+    t.string "role"
     t.string "first_name"
     t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -133,6 +134,18 @@ ActiveRecord::Schema.define(version: 2020_11_29_194717) do
     t.integer "active"
     t.string "target"
     t.time "timestamp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "workpieces", force: :cascade do |t|
+    t.string "history"
+    t.string "code100"
+    t.string "code200"
+    t.string "code800"
+    t.string "state"
+    t.string "color"
+    t.string "workpiece_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
