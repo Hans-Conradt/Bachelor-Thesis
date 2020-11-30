@@ -12,25 +12,25 @@ users = [{
   first_name: 'Admin',
   last_name: 'Example',
   password: 'Admin0022',
-  position: 'admin'
+  role: 'admin'
 }, {
-  email: 'manager@example.com',
-  first_name: 'Manager',
+  email: 'production@example.com',
+  first_name: 'Production',
   last_name: 'Example',
-  password: 'Manager0022',
-  position: 'manager'
+  password: 'Production0022',
+  role: 'production'
 }, {
-  email: 'exective@example.com',
-  first_name: 'Executive',
+  email: 'business@example.com',
+  first_name: 'Business',
   last_name: 'Example',
-  password: 'Executive0022',
-  position: 'executive'
+  password: 'Business0022',
+  role: 'business'
 }, {
-  email: 'operations_staff@example.com',
-  first_name: 'Operations_staff',
+  email: 'process@example.com',
+  first_name: 'Process',
   last_name: 'Example',
-  password: 'Operations_staff0022',
-  position: 'operations_staff'
+  password: 'Processf0022',
+  role: 'process'
 }]
 
 users.each { |user| User.new(user).save! }
@@ -121,13 +121,13 @@ brightnesses = [{
 brightnesses.each { |brightness| BrightnessSensor.new(brightness).save! }
 
 
-puts 'Cleaning Stock...'
-Stock.destroy_all
-puts 'Creating Stock...'
+# puts 'Cleaning Stock...'
+# Stock.destroy_all
+# puts 'Creating Stock...'
 
-message = '{"stockItems": [{"location": "A1", "workpiece": {"id": "NIL", "state": "Vacant", "type": "NIL"}}, {"location": "A2", "workpiece": {"id": "04b4ae4a616080", "state": "RAW", "type": "BLUE"}}, {"location": "A3", "workpiece": {"id": "042eac4a616080", "state": "RAW", "type": "RED"}}, {"location": "B1", "workpiece": {"id": "042fac4a616080", "state": "RAW", "type": "RED"}}, {"location": "B2", "workpiece": {"id": "0423ab4a616080", "state": "RAW", "type": "RED"}}, {"location": "B3", "workpiece": {"id": "04f2b74a616080", "state": "RAW", "type": "WHITE"}}, {"location": "C1", "workpiece": {"id": "NIL", "state": "Vacant", "type": "NIL"}}, {"location": "C2", "workpiece": {"id": "0417ae4a616080", "state": "RAW", "type": "BLUE"}}, {"location": "C3", "workpiece": {"id": "NIL", "state": "Vacant", "type": "NIL"}}], "ts": "2020-02-26T10:23:44.012Z"}'
-stock_hash = JSON.parse(message)
-Stock.new(stockitems: stock_hash).save!
+# message = "[{\'location\'=>\'A1\', \'workpiece\'=>{\'id\'=>\'NIL\', \'state\'=>\'Vacant\', \'type\'=>\'NIL\'}}, {\'location\'=>\'A2\', \'workpiece\'=>{\'id\'=>\'NIL\', \'state\'=>\'Vacant\', \'type\'=>\'NIL\'}}, {\'location\'=>\'A3\', \'workpiece\'=>{\'id\'=>\'NIL\', \'state\'=>\'Vacant\', \'type\'=>\'NIL\'}}, {\'location\'=>\'B1\', \'workpiece\'=>{\'id\'=>\'0417ae4a616080\', \'state\'=>\'RAW\', \'type\'=>\'BLUE\'}}, {\'location\'=>\'B2\', \'workpiece\'=>{\'id\'=>\'NIL\', \'state\'=>\'Vacant\', \'type\'=>\'NIL\'}}, {\'location\'=>\'B3\', \'workpiece\'=>{\'id\'=>\'NIL\', \'state\'=>\'Vacant\', \'type\'=>\'NIL\'}}, {\'location\'=>\'C1\', \'workpiece\'=>{\'id\'=>\'04b4ae4a616080\', \'state\'=>\'RAW\', \'type\'=>\'BLUE\'}}, {\'location\'=>\'C2\', \'workpiece\'=>{\'id\'=>\'NIL\', \'state\'=>\'Vacant\', \'type\'=>\'NIL\'}}, {\'location\'=>\'C3\', \'workpiece\'=>{\'id\'=>\'NIL\', \'state\'=>\'Vacant\', \'type\'=>\'NIL\'}}]"
+# stock_hash = JSON.parse(message)
+# Stock.new(stockitems: stock_hash).save!
 
 puts 'Cleaning Orders...'
 Order.destroy_all
@@ -138,11 +138,16 @@ dates = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 types = ['WHITE', 'RED', 'BLUE']
 orders = []
 
-100.times do
+def bernoulli(percentage)
+  rand < percentage ? 1 : 0
+end
+
+1000.times do
   order = {
     state: states.sample,
     t: types.sample,
-    time: "2020-#{dates.sample}-24 10:00:11.249523"
+    time: "2020-#{dates.sample}-24 10:00:11.249523",
+    quality: bernoulli(0.8)
   }
   orders << order
 end
@@ -197,5 +202,78 @@ alerts = [{
   }]
 alerts.each do |alert|
   Alert.new(alert).save!
-  sleep(100)
+end
+
+puts 'Cleaning Workpieces...'
+Workpiece.destroy_all
+puts 'Creating Workpieces...'
+
+workpieces = [{
+  history: 'NIL',
+  code100: 'NIL',
+  code200: 'NIL',
+  code800: 'NIL',
+  state: 'RAW',
+  color: 'BLUE',
+  workpiece_id: '0417ae4a616080'
+}, {
+  history: 'NIL',
+  code100: 'NIL',
+  code200: 'NIL',
+  code800: 'NIL',
+  state: 'RAW',
+  color: 'BLUE',
+  workpiece_id: '04b4ae4a616080'
+}, {
+  history: 'NIL',
+  code100: '2020-02-26T10:56:46.959Z',
+  code200: '2020-02-26T10:56:46.959Z',
+  code800: '2020-02-26T10:56:46.959Z',
+  state: 'PROCESSED',
+  color: 'WHITE',
+  workpiece_id: '04b6ae4a616080'
+}, {
+  history: 'NIL',
+  code100: '2020-02-26T10:56:46.959Z',
+  code200: '2020-02-26T10:56:46.959Z',
+  code800: '2020-02-26T10:56:46.959Z',
+  state: 'PROCESSED',
+  color: 'RED',
+  workpiece_id: '0426ae4a616080'
+}, {
+  history: 'NIL',
+  code100: '2020-02-26T10:56:46.959Z',
+  code200: '2020-02-26T10:56:46.959Z',
+  code800: '2020-02-26T10:56:46.959Z',
+  state: 'PROCESSED',
+  color: 'BLUE',
+  workpiece_id: '04f6ae4a616080'
+}, {
+  history: 'NIL',
+  code100: '2020-02-26T10:56:46.959Z',
+  code200: '2020-02-26T10:56:46.959Z',
+  code800: '2020-02-26T10:56:46.959Z',
+  state: 'PROCESSED',
+  color: 'WHITE',
+  workpiece_id: '0t76ae4a616080'
+}, {
+  history: 'NIL',
+  code100: '2020-02-26T10:56:46.959Z',
+  code200: '2020-02-26T10:56:46.959Z',
+  code800: '2020-02-26T10:56:46.959Z',
+  state: 'PROCESSED',
+  color: 'RED',
+  workpiece_id: '04d6ae4a616080'
+}, {
+  history: 'NIL',
+  code100: '2020-02-26T10:56:46.959Z',
+  code200: '2020-02-26T10:56:46.959Z',
+  code800: '2020-02-26T10:56:46.959Z',
+  state: 'PROCESSED',
+  color: 'BLUE',
+  workpiece_id: '04f4ae4a616080'
+}]
+
+workpieces.each do |workpiece|
+  Workpiece.new(workpiece).save!
 end

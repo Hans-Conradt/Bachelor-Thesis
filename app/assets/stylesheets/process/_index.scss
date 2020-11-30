@@ -1,0 +1,62 @@
+@import "current_stock" ;
+@import "station_environment" ;
+.inactive {
+  border: 2px;
+  border-radius: 60px;
+  margin: 4px;
+  background-color: #ad2817;
+  &:hover {
+    cursor: pointer
+  }
+}
+
+.active {
+  border: 2px;
+  border-radius: 60px;
+  margin: 4px;
+  background-color: #3d7036;
+  &:hover {
+    cursor: pointer
+  }
+}
+
+.red{
+  background-color: #ad2817;
+  border-radius: 60px;
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 30px
+}
+
+.green{
+  background-color: #3d7036;
+  border-radius: 60px;
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 30px
+}
+
+.margin {
+  margin: 5px;
+  text-align: center
+}
+
+.alert-button{
+margin-top: 65px;
+color: black
+}
+
+.parent {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(3, 1fr);
+gap: 15px 15px;
+}
+
+.centered {
+  text-align: center;
+}
+
+.stock {
+  display: center;
+}

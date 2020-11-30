@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Production Dashboard</h1>
+  <div class="grid-container">
+    <div class="order-type child border Area-2">
+      <h2> Production Process </h2>
+    </div>
+    <div class="child border Area-1">
+      <h2> Reclamations  </h2>
+      <div class= "reclamations">
+        <%= line_chart  [
+        {name: "Good Orders", data: @good_orders.group(:time).count},
+        {name: "Returns", data: @bad_orders.group(:time).count, crosshair: true}
+        ], height: "250px" ,ytitle: "Quantity"%>
+       </div>
+    </div>
+    <div class="child border Area-3">
+      <h2> Maintenance schedule  </h2>
+      <div>
+        <%= %>
+      </div>
+    </div>
+    <div class="child border Area-4" >
+      <h2> Workpiece Tracking</h2>
+      <div>
+        <h3>In the factory</h3>
+        <div class="table-wrapper">
+          <%@raw_workpieces.each do |workpiece|%>
+            <div id="workpiece">
+              <p id="<%=workpiece.color%>"></p>
+              <p><%=workpiece.workpiece_id%></p>
+            </div>
+          <%end%>
+        </div>
+        <h3>Processed and Shipped</h3>
+        <div class="table-wrapper">
+          <%@processed_workpieces.each do |workpiece|%>
+              <div id="workpiece">
+                <p id="<%=workpiece.color%>"></p>
+                <p><%=workpiece.workpiece_id%></p>
+              </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+    <div class="child border Area-5" >
+      <h2> Overall Equipment Effectiveness </h2>
+      <div class="oee">
+        <div class="centered-on-top">
+          <h3><%= "#{@oee}%" %></h3>
+        </div>
+        <%= pie_chart @oee_hash , donut: true,height: "200px", colors: ["#175dad","#606060", "#ad2817"],legend: "bottom"%>
+        </div>
+    </div>
+  </div>
+</div>

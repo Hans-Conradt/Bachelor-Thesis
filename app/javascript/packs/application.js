@@ -4,7 +4,9 @@
 // that code so it'll be compiled.
 import 'bootstrap';
 
+
 require("chartkick")
+require("highcharts")
 require("chart.js")
 
 require("@rails/ujs").start()
