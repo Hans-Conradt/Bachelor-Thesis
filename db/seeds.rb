@@ -29,7 +29,7 @@ users = [{
   email: 'process@example.com',
   first_name: 'Process',
   last_name: 'Example',
-  password: 'Processf0022',
+  password: 'Process0022',
   role: 'process'
 }]
 
@@ -50,7 +50,7 @@ HbwState.destroy_all
 puts 'Creating HbwStates...'
 
 hbwstates = [{
-  active: 1,
+  active: 0,
   created_at: '2020-10-20 10:00:11.249523'
 }]
 hbwstates.each { |hbwstate| HbwState.new(hbwstate).save! }
@@ -60,7 +60,7 @@ DsoState.destroy_all
 puts 'Creating DsoStates...'
 
 dsostates = [{
-  active: 1,
+  active: 0,
   created_at: '2020-10-20 10:00:11.249523'
 }]
 dsostates.each { |dsostate| DsoState.new(dsostate).save! }
@@ -70,7 +70,7 @@ DsiState.destroy_all
 puts 'Creating DsiStates...'
 
 dsistates = [{
-  active: 1,
+  active: 0,
   created_at: '2020-10-20 10:00:11.249523'
 }]
 dsistates.each { |dsistate| DsiState.new(dsistate).save! }
@@ -80,7 +80,7 @@ VgrState.destroy_all
 puts 'Creating VgrStates...'
 
 vgrstates = [{
-  active: 1,
+  active: 0,
   created_at: '2020-10-20 10:00:11.249523'
 }]
 vgrstates.each { |vgrstate| VgrState.new(vgrstate).save! }
@@ -90,7 +90,7 @@ SldState.destroy_all
 puts 'Creating SldStates...'
 
 sldstates = [{
-  active: 1,
+  active: 0,
   created_at: '2020-10-20 10:00:11.249523'
 }]
 sldstates.each { |sldstate| SldState.new(sldstate).save! }
@@ -134,7 +134,7 @@ Order.destroy_all
 puts 'Creating Orders..'
 
 states = ['SHIPPED', 'IN_PROGRESS', 'WAITING_FOR_ORDER', 'ORDERED']
-dates = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+dates = ['2020-01', '2020-02', '2020-03', '2020-04', '2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10', '2020-11', '2020-12', '2021-01']
 types = ['WHITE', 'RED', 'BLUE']
 orders = []
 
@@ -146,7 +146,7 @@ end
   order = {
     state: states.sample,
     t: types.sample,
-    time: "2020-#{dates.sample}-24 10:00:11.249523",
+    time: "#{dates.sample}-24 10:00:11.249523",
     quality: bernoulli(0.8)
   }
   orders << order
@@ -159,15 +159,13 @@ OrderTarget.destroy_all
 puts 'Creating OrderTargets..'
 
 quantities = [3, 5, 14, 4, 6, 8, 13, 10, 9, 1, 23, 4, 6, 9, 12, 8]
-dates = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-types = ['WHITE', 'RED', 'BLUE']
 order_targets = []
 
-100.times do
+dates.each do |date|
   order_target = {
     quantity: quantities.sample,
     t: types.sample,
-    time: "2020-#{dates.sample}-24 10:00:11.249523"
+    time: "#{date}-24 10:00:11.249523"
   }
   order_targets << order_target
 end

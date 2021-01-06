@@ -6,7 +6,7 @@ import 'bootstrap';
 
 
 require("chartkick")
-require("highcharts")
+// require("highcharts")
 require("chart.js")
 
 require("@rails/ujs").start()
