@@ -1,12 +1,12 @@
 <div class="container">
 <h1>Process Dashboard</h1>
   <div class="parent">
-    <div class="border child">
-      <h2>Current Order</h2>
-      <div class= "red">
-          <h3><%="No order in process"%> </h3>
-        </div>
 
+   <div class="child border">
+      <h2> Current Process </h2>
+      <div class= "<%= @activity %>">
+          <h3><%= @current_order %> </h3>
+        </div>
     </div>
 
     <div class=" border child">
@@ -23,7 +23,7 @@
 
         </div>
         <div class="row">
-          <%= "Alert from: #{Alert.last.station}"%>
+          <%= "Alert from: #{@alert_station}"%>
         </div>
       </div>
       <div class= "centered alert-button">
@@ -31,74 +31,24 @@
         </div>
     </div>
 
-
-    <div class=" border child">
-      <h2>Current stock</h2>
-      <div class = "stock">
-         <div class="row">
-            <div   class=" cell <%=@current_stock[0]["workpiece"]["type"] %>"
-                  data-toggle="popover" data-trigger="hover"
-                  title="ID: <%=@current_stock[0]["workpiece"]["id"] %>"
-                  data-content="State: <%=@current_stock[0]["workpiece"]["state"]  %>">
-                  <h3><%= @current_stock[0]["location"]%> </h3>
-            </div>
-            <div   class=" cell <%=@current_stock[1]["workpiece"]["type"] %>"
-                  data-toggle="popover" data-trigger="hover"
-                  title="ID: <%=@current_stock[1]["workpiece"]["id"] %>"
-                  data-content="State: <%=@current_stock[1]["workpiece"]["state"]  %>">
-                  <h3><%= @current_stock[1]["location"]%> </h3>
-            </div>
-            <div   class=" cell <%=@current_stock[2]["workpiece"]["type"] %>"
-                  data-toggle="popover" data-trigger="hover"
-                  title="ID: <%=@current_stock[2]["workpiece"]["id"] %>"
-                  data-content="State: <%=@current_stock[2]["workpiece"]["state"]  %>">
-                  <h3><%= @current_stock[2]["location"]%> </h3>
-            </div>
-         </div>
-         <div class="row">
-            <div   class=" cell <%=@current_stock[3]["workpiece"]["type"] %>"
-                  data-toggle="popover" data-trigger="hover"
-                  title="ID: <%=@current_stock[3]["workpiece"]["id"] %>"
-                  data-content="State: <%=@current_stock[3]["workpiece"]["state"]  %>">
-                  <h3><%= @current_stock[3]["location"]%> </h3>
-            </div>
-            <div   class=" cell <%=@current_stock[4]["workpiece"]["type"] %>"
-                  data-toggle="popover" data-trigger="hover"
-                  title="ID: <%=@current_stock[4]["workpiece"]["id"] %>"
-                  data-content="State: <%=@current_stock[4]["workpiece"]["state"]  %>">
-                  <h3><%= @current_stock[4]["location"]%> </h3>
-            </div>
-            <div   class=" cell <%=@current_stock[5]["workpiece"]["type"] %>"
-                  data-toggle="popover" data-trigger="hover"
-                  title="ID: <%=@current_stock[5]["workpiece"]["id"] %>"
-                  data-content="State: <%=@current_stock[5]["workpiece"]["state"]  %>">
-                  <h3><%= @current_stock[5]["location"]%> </h3>
-            </div>
-         </div>
-         <div class="row">
-            <div   class=" cell <%=@current_stock[6]["workpiece"]["type"] %>"
-                  data-toggle="popover" data-trigger="hover"
-                  title="ID: <%=@current_stock[6]["workpiece"]["id"] %>"
-                  data-content="State: <%=@current_stock[6]["workpiece"]["state"]  %>">
-                  <h3><%= @current_stock[6]["location"]%> </h3>
-            </div>
-            <div   class=" cell <%=@current_stock[7]["workpiece"]["type"] %>"
-                  data-toggle="popover" data-trigger="hover"
-                  title="ID: <%=@current_stock[7]["workpiece"]["id"] %>"
-                  data-content="State: <%=@current_stock[7]["workpiece"]["state"]  %>">
-                  <h3><%= @current_stock[7]["location"]%> </h3>
-            </div>
-            <div   class=" cell <%=@current_stock[8]["workpiece"]["type"] %>"
-                  data-toggle="popover" data-trigger="hover"
-                  title="ID: <%=@current_stock[8]["workpiece"]["id"] %>"
-                  data-content="State: <%=@current_stock[8]["workpiece"]["state"]  %>">
-                  <h3><%= @current_stock[8]["location"]%> </h3>
-            </div>
-         </div>
+    <div class="child border">
+      <h2> Maintenance Schedule  </h2>
+      <div>
+        <% if @clear_for_maintainance %>
+        <div class= "green">
+          <h3>No station active, clear for maintainance</h3>
+        </div>
+        <% else %>
+          <div >
+            <h3 class= "red">Not clear for Maintainance</h3>
+            <h4>The following stations are active</h4>
+            <% @active_stations.each do |station|%>
+              <h4><%= station %></h4>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
-
-
 
      <div class=" border child">
       <h2>Stations Activity Report</h2>
@@ -118,22 +68,19 @@
       <% end %>
     </div>
 
-     <div class=" border child">
-
+     <div class="border child">
       <div class="margin">
         <h2>Station Image </h2>
         <div class = "" data-toggle="popover" data-trigger="hover"
-              data-placement="auto" title="Position" data-content="Pan: <%= CameraPosition.last.pan%> Tilt: <%= CameraPosition.last.tilt%>">
+              data-placement="auto" title="Position" data-content="Pan: <%= @pan %> Tilt: <%= @tilt%>">
             <p class= "centered"><%= image_tag("station_image.jpeg") %></p>
           </div>
       </div>
     </div>
 
     <div class=" border child">
-
       <div class="margin">
         <h2>Station Environment </h2>
-
         <div class="margin">
           <div class = "right">
             <% t = Time.now %>
@@ -146,7 +93,7 @@
         <div class="margin">
           <div class = "right" data-toggle="popover" data-trigger="hover"
               data-placement="bottom"  data-content="4.0°C < Ideal Temperature > 50.0°C">
-            <%="#{EnvironmentSensor.last.temperature} °C" %>
+            <%="#{@temperature} °C" %>
           </div>
           <div class = "left">
             <%="Temperature:" %>
@@ -157,7 +104,7 @@
             <%="Air Pressure:"  %>
           </div>
           <div class = "right">
-            <%="#{EnvironmentSensor.last.airpressure} hPa" %>
+            <%="#{@air_preassure} hPa" %>
           </div>
         </div>
         <div class="margin">
@@ -166,7 +113,7 @@
           </div>
           <div class = "right"data-toggle="popover" data-trigger="hover"
               data-placement="bottom"  data-content="(0...50:Good, 51...100:Moderate, 101...150:Unhealthy for Sensitive Groups, 151...200:Unhealthy, 201...300:Very Unhealthy, 301...500:Hazardous">
-            <%="#{EnvironmentSensor.last.airquality}" %>
+            <%="#{@air_quality}" %>
           </div>
         </div>
         <div class="margin">
@@ -174,7 +121,7 @@
             <%="Humidity:"  %>
           </div>
           <div class = "right">
-            <%="#{EnvironmentSensor.last.humidity}" %>
+            <%="#{@humidity}" %>
           </div>
         </div>
         <div class="margin">
@@ -182,10 +129,9 @@
             <%="Brightness:"  %>
           </div>
           <div class = "right">
-            <%="#{BrightnessSensor.last.brightness}" %>
+            <%="#{@brightness}" %>
           </div>
         </div>
-
   </div>
 </div>
 

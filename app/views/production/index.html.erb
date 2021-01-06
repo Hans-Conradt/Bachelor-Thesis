@@ -1,24 +1,95 @@
 <div class="container">
   <h1>Production Dashboard</h1>
   <div class="grid-container">
-    <div class="order-type child border Area-2">
-      <h2> Production Process </h2>
-    </div>
+
     <div class="child border Area-1">
       <h2> Reclamations  </h2>
       <div class= "reclamations">
         <%= line_chart  [
-        {name: "Good Orders", data: @good_orders.group(:time).count},
-        {name: "Returns", data: @bad_orders.group(:time).count, crosshair: true}
-        ], height: "250px" ,ytitle: "Quantity"%>
+        {name: "Good Orders", data: @good_orders.group_by_month(:time).count},
+        {name: "Returns", data: @bad_orders.group_by_month(:time).count, crosshair: true}
+        ], height: "230px" ,ytitle: "Quantity"%>
        </div>
     </div>
-    <div class="child border Area-3">
-      <h2> Maintenance schedule  </h2>
-      <div>
-        <%= %>
+
+     <div class="child border Area-2">
+      <h2> Production Process </h2>
+      <h3>Current Order:</h3>
+      <div class= "<%= @activity %>">
+          <h3><%= @current_order %> </h3>
+        </div>
+      <h3>Last Order:</h3>
+      <div class= "<%="#{@last_order} order"  %>">
+          <h3><%= @last_order %> </h3>
+        </div>
+    </div>
+
+    <div class=" border child Area-3">
+      <h2>Current stock</h2>
+      <div class = "stock">
+         <div class="row">
+            <div   class=" cell <%=@current_stock[0]["workpiece"]["type"] %>"
+                  data-toggle="popover" data-trigger="hover"
+                  title="ID: <%=@current_stock[0]["workpiece"]["id"] %>"
+                  data-content="State: <%=@current_stock[0]["workpiece"]["state"]  %>">
+                  <h3><%= @current_stock[0]["location"]%> </h3>
+            </div>
+            <div   class=" cell <%=@current_stock[1]["workpiece"]["type"] %>"
+                  data-toggle="popover" data-trigger="hover"
+                  title="ID: <%=@current_stock[1]["workpiece"]["id"] %>"
+                  data-content="State: <%=@current_stock[1]["workpiece"]["state"]  %>">
+                  <h3><%= @current_stock[1]["location"]%> </h3>
+            </div>
+            <div   class=" cell <%=@current_stock[2]["workpiece"]["type"] %>"
+                  data-toggle="popover" data-trigger="hover"
+                  title="ID: <%=@current_stock[2]["workpiece"]["id"] %>"
+                  data-content="State: <%=@current_stock[2]["workpiece"]["state"]  %>">
+                  <h3><%= @current_stock[2]["location"]%> </h3>
+            </div>
+         </div>
+         <div class="row">
+            <div   class=" cell <%=@current_stock[3]["workpiece"]["type"] %>"
+                  data-toggle="popover" data-trigger="hover"
+                  title="ID: <%=@current_stock[3]["workpiece"]["id"] %>"
+                  data-content="State: <%=@current_stock[3]["workpiece"]["state"]  %>">
+                  <h3><%= @current_stock[3]["location"]%> </h3>
+            </div>
+            <div   class=" cell <%=@current_stock[4]["workpiece"]["type"] %>"
+                  data-toggle="popover" data-trigger="hover"
+                  title="ID: <%=@current_stock[4]["workpiece"]["id"] %>"
+                  data-content="State: <%=@current_stock[4]["workpiece"]["state"]  %>">
+                  <h3><%= @current_stock[4]["location"]%> </h3>
+            </div>
+            <div   class=" cell <%=@current_stock[5]["workpiece"]["type"] %>"
+                  data-toggle="popover" data-trigger="hover"
+                  title="ID: <%=@current_stock[5]["workpiece"]["id"] %>"
+                  data-content="State: <%=@current_stock[5]["workpiece"]["state"]  %>">
+                  <h3><%= @current_stock[5]["location"]%> </h3>
+            </div>
+         </div>
+         <div class="row">
+            <div   class=" cell <%=@current_stock[6]["workpiece"]["type"] %>"
+                  data-toggle="popover" data-trigger="hover"
+                  title="ID: <%=@current_stock[6]["workpiece"]["id"] %>"
+                  data-content="State: <%=@current_stock[6]["workpiece"]["state"]  %>">
+                  <h3><%= @current_stock[6]["location"]%> </h3>
+            </div>
+            <div   class=" cell <%=@current_stock[7]["workpiece"]["type"] %>"
+                  data-toggle="popover" data-trigger="hover"
+                  title="ID: <%=@current_stock[7]["workpiece"]["id"] %>"
+                  data-content="State: <%=@current_stock[7]["workpiece"]["state"]  %>">
+                  <h3><%= @current_stock[7]["location"]%> </h3>
+            </div>
+            <div   class=" cell <%=@current_stock[8]["workpiece"]["type"] %>"
+                  data-toggle="popover" data-trigger="hover"
+                  title="ID: <%=@current_stock[8]["workpiece"]["id"] %>"
+                  data-content="State: <%=@current_stock[8]["workpiece"]["state"]  %>">
+                  <h3><%= @current_stock[8]["location"]%> </h3>
+            </div>
+         </div>
       </div>
     </div>
+
     <div class="child border Area-4" >
       <h2> Workpiece Tracking</h2>
       <div>
@@ -48,7 +119,7 @@
         <div class="centered-on-top">
           <h3><%= "#{@oee}%" %></h3>
         </div>
-        <%= pie_chart @oee_hash , donut: true,height: "200px", colors: ["#175dad","#606060", "#ad2817"],legend: "bottom"%>
+        <%= pie_chart @oee_hash , donut: true,height: "210px", colors: ["#175dad","#606060", "#ad2817"],legend: "bottom"%>
         </div>
     </div>
   </div>

@@ -73,10 +73,10 @@ class MqttConnectorWorker
       update_dso_state(message)
     when 'f/i/stock'
       update_stock(message)
-    # when 'f/i/order'
-    #   update_order(message)
-    # when 'f/i/nfc/ds'
-    #   update_nfc_ds(message)
+    when 'f/i/order'
+      update_order(message)
+    when 'f/i/nfc/ds'
+      update_nfc_ds(message)
     end
   end
 
@@ -121,16 +121,18 @@ class MqttConnectorWorker
     puts 'HBW State Updated'
   end
 
-  def update_position
+  def update_position(message)
     position_json = JSON.parse(message)
-    new_position = CameraPosition.new(pan: position_json['pan'],tilt: position_json['tilt'])
+    new_position = CameraPosition.new(pan: position_json['pan'], tilt: position_json['tilt'])
     new_position.save
     puts 'Camera Position Updated'
     new
   end
-  def update_alert
+  def update_alert(message)
     alert_json = JSON.parse(message)
-
+    new_alert = Alert.new(station: alert_json['station'], code: alert_json['code'])
+    new_alert.save
+    puts 'VGR State Updated'
   end
 
   def update_vgr_state(message)
@@ -186,6 +188,22 @@ class MqttConnectorWorker
     Stock.new(stockitems: modified_stock_hash).save!
     puts 'Stock Updated'
   end
+
+  def faulty_order(percentage)
+    rand < percentage ? 1 : 0
+  end
+
+  def update_order(message)
+    order_hash = JSON.parse(message)
+    new_order = Order.new(state: order_hash['state'], t: order_hash['type'], quality: faulty_order(0.8), time: order_hash['ts'] )
+    new_order.save
+    puts 'Orders Updated'
+  end
+
+  def update_nfc(message)
+    # nfc_hash = JSON.parse(message)
+    # new_workpiece = Workpiece.new()
+    # new_workpiece.save
+    # puts 'Workpieces updated'
+  end
 end
-
-

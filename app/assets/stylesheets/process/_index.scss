@@ -1,10 +1,10 @@
-@import "current_stock" ;
+
 @import "station_environment" ;
 .inactive {
   border: 2px;
   border-radius: 60px;
   margin: 4px;
-  background-color: #ad2817;
+  background-color: #cc8400;
   &:hover {
     cursor: pointer
   }
@@ -57,6 +57,4 @@ gap: 15px 15px;
   text-align: center;
 }
 
-.stock {
-  display: center;
-}
+
